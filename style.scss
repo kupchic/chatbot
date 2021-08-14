@@ -2,6 +2,36 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
+}
+
+@mixin scrollStyle($width, $thumb-color, $track-color) {
+  &::-webkit-resize {
+    width: $width;
+    height: $width;
+  }
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: $width;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $width/2;
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  & {
+    scrollbar-color: $thumb-color $track-color;
+    scrollbar-width: thin;
+  }
 }
 
 $accent-green: #1d432e;
@@ -181,13 +211,14 @@ $form-pad: 16px;
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
-  padding-top: 30px;
+  padding-top: 25px;
   //max-height: $form-height - 2 * $form-header-input-label-height;
-  margin-right: -$form-pad;
+  margin-right: -$form-pad + 4px;
   padding-right: $form-pad;
   input[type="radio"] {
     display: none;
   }
+  @include scrollStyle(6px, rgba(0, 0, 0, 0.2), #fff);
 }
 .message-box {
   position: relative;
@@ -392,7 +423,6 @@ $form-pad: 16px;
 }
 .radio-label {
   position: relative;
-  width: 220px;
   max-width: 220px;
   margin-right: 2px;
   padding: 10px 15px;
@@ -438,6 +468,8 @@ $icon-color: #687882;
   justify-content: center;
   align-items: center;
   position: relative;
+
+  align-self: end;
 }
 
 #add-file-btn {
@@ -500,12 +532,16 @@ $btn-width: 30px;
 .smiles-wrp {
   position: absolute;
   width: calc(100% + #{$form-pad}* 2);
+  margin-right: 4px;
   margin-left: -$form-pad;
   bottom: $form-header-input-label-height;
   padding: $form-pad;
-  border-bottom: 1px solid $icon-color;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #fff;
   max-height: 190px;
+  overflow-y: auto;
+  @include scrollStyle(6px, rgba(0, 0, 0, 0.2), #fff);
+
   &_type {
     width: 100%;
     font-weight: 500;
