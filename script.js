@@ -8,9 +8,14 @@ const chartInput = chartWrapper.querySelector('.chat-input');
 const chartSendBtn = chartWrapper.querySelector('.input-btn--send');
 const allSmilesWrp = chartWrapper.querySelector('.smiles-grid--all');
 const memberName = document.querySelector('.avatar-name.hero-avatar').textContent;
-let userName = '';
-let tree = '';
 
+let userInfo = {
+  tree: '',
+  userName: "",
+  answers: {}
+};
+
+chartWrapper.addEventListener('submit', prevent);
 chartSendBtn.addEventListener('click', prevent);
 
 const plan = {
@@ -28,96 +33,17 @@ const plan = {
     q3: {
       radio1: 'Yes', radio2: 'No'
     },
-    g4: {
+    q4: 'Have you found a home or are you still looking for one?',
+    q5: {
       radio1: "I haven't started",
-      radio2: "I'm still looking"
+      radio2: "I'm still looking",
+      radio3: "I found a home"
     },
   },
   final: `${memberName} can help you start your journey here! Have a great day ✋! `,
 };
 
-let emojis = [
-  "0x1F600",
-  "0x1F601",
-  "0x1F602",
-  "0x1F603",
-  "0x1F604",
-  "0x1F605",
-  "0x1F606",
-  "0x1F607",
-  "0x1F608",
-  "0x1F609",
-  "0x1F60A",
-  "0x1F60B",
-  "0x1F60C",
-  "0x1F60D",
-  "0x1F60E",
-  "0x1F60F",
-  "0x1F610",
-  "0x1F611",
-  "0x1F612",
-  "0x1F613",
-  "0x1F614",
-  "0x1F615",
-  "0x1F616",
-  "0x1F617",
-  "0x1F618",
-  "0x1F619",
-  "0x1F61A",
-  "0x1F61B",
-  "0x1F61C",
-  "0x1F61D",
-  "0x1F61E",
-  "0x1F61F",
-  "0x1F620",
-  "0x1F621",
-  "0x1F622",
-  "0x1F623",
-  "0x1F624",
-  "0x1F625",
-  "0x1F626",
-  "0x1F627",
-  "0x1F628",
-  "0x1F629",
-  "0x1F62A",
-  "0x1F62B",
-  "0x1F62C",
-  "0x1F62D",
-  "0x1F62E",
-  "0x1F62F",
-  "0x1F630",
-  "0x1F631",
-  "0x1F632",
-  "0x1F633",
-  "0x1F634",
-  "0x1F635",
-  "0x1F636",
-  "0x1F637",
-  "0x1F638",
-  "0x1F639",
-  "0x1F63A",
-  "0x1F63B",
-  "0x1F63C",
-  "0x1F63D",
-  "0x1F63E",
-  "0x1F63F",
-  "0x1F640",
-  "0x1F641",
-  "0x1F642",
-  "0x1F643",
-  "0x1F644",
-  "0x1F645",
-  "0x1F646",
-  "0x1F647",
-  "0x1F648",
-  "0x1F649",
-  "0x1F64A",
-  "0x1F64B",
-  "0x1F64C",
-  "0x1F64D",
-  "0x1F64E",
-  "0x1F64F"
-];
+let emojis = ["0x1F600", "0x1F601", "0x1F602", "0x1F603", "0x1F604", "0x1F605", "0x1F606", "0x1F607", "0x1F608", "0x1F609", "0x1F60A", "0x1F60B", "0x1F60C", "0x1F60D", "0x1F60E", "0x1F60F", "0x1F610", "0x1F611", "0x1F612", "0x1F613", "0x1F614", "0x1F615", "0x1F616", "0x1F617", "0x1F618", "0x1F619", "0x1F61A", "0x1F61B", "0x1F61C", "0x1F61D", "0x1F61E", "0x1F61F", "0x1F620", "0x1F621", "0x1F622", "0x1F623", "0x1F624", "0x1F625", "0x1F626", "0x1F627", "0x1F628", "0x1F629", "0x1F62A", "0x1F62B", "0x1F62C", "0x1F62D", "0x1F62E", "0x1F62F", "0x1F630", "0x1F631", "0x1F632", "0x1F633", "0x1F634", "0x1F635", "0x1F636", "0x1F637", "0x1F638", "0x1F639", "0x1F63A", "0x1F63B", "0x1F63C", "0x1F63D", "0x1F63E", "0x1F63F", "0x1F640", "0x1F641", "0x1F642", "0x1F643", "0x1F644", "0x1F645", "0x1F646", "0x1F647", "0x1F648", "0x1F649", "0x1F64A", "0x1F64B", "0x1F64C", "0x1F64D", "0x1F64E", "0x1F64F"];
 
 
 function prevent(e) {
@@ -129,16 +55,13 @@ function scrollTo() {
 
 function inputClose() {
   chartInput.classList.add('disabled');
-  chartInput.parentNode.childNodes.forEach(node => {
-    node.addEventListener('click', prevent);
-  });
+  chartSendBtn.addEventListener('click', prevent);
+  chartSendBtn.classList.remove('active');
 }
 
 function inputOpen() {
   chartInput.classList.remove('disabled');
-  chartInput.parentNode.childNodes.forEach(node => {
-    node.removeEventListener('click', prevent);
-  });
+  chartSendBtn.removeEventListener('click', prevent);
 }
 
 function addToChart(el) {
@@ -153,6 +76,8 @@ function addNewQuestion(text) {
   setTimeout(() => {
     chart.querySelector('.message-box__question:not(.show)').classList.add('show');
   }, 2000);
+  //TODO formSubmitting
+  if (text === plan.final) console.log(userInfo);
 }
 function addNewAnswer() {
   if (chartInput.value) {
@@ -177,6 +102,7 @@ function addNewRadioBtns(obj, step) {
     radioBtnTmpl.querySelector('input').setAttribute('name', `step-${step}`);
     radioBtnTmpl.querySelector('input').setAttribute('value', obj[`${key}`]);
     radioBoxTmpl.appendChild(radioBtnTmpl);
+    inputClose();
   });
   addToChart(radioBoxTmpl);
   scrollTo();
@@ -196,16 +122,15 @@ function inputValueCheck(e) {
 }
 function knowName() {
   if (chartInput.value) {
-    userName = chartInput.value;
-    plan.tree1.q2 = `Hey ${userName}. Why are you thinking about refinancing?`;
-    plan.tree2.q2 = `Hey ${userName}. Are you an existing homeowner?`;
+    userInfo.userName = chartInput.value;
+    plan.tree1.q2 = `Hey ${userInfo.userName}. Why are you thinking about refinancing?`;
+    plan.tree2.q2 = `Hey ${userInfo.userName}. Are you an existing homeowner?`;
     chartSendBtn.removeEventListener('click', knowName);
     setTimeout(() => {
-      addNewQuestion(plan[`${tree}`].q2);
+      addNewQuestion(plan[`${userInfo.tree}`].q2);
       setTimeout(() => {
-        addNewRadioBtns(plan[`${tree}`].q3, 2);
-      }, 3000);
-
+        addNewRadioBtns(plan[`${userInfo.tree}`].q3, 2);
+      }, 2500);
     }, 2000);
 
   }
@@ -240,11 +165,12 @@ chartWrapper.addEventListener('click', (e) => {
     //tree1
     const labelFor = e.target.getAttribute('for');
     const step = e.target.getAttribute('step');
+    userInfo.answers[`step-${step}`] = e.target.textContent;
     if (step === '1') {
       if (labelFor === 'yep') {
-        tree = 'tree1';
+        userInfo.tree = 'tree1';
       }
-      else tree = 'tree2';
+      else userInfo.tree = 'tree2';
 
       addNewQuestion(plan.q1);
       setTimeout(() => {
@@ -252,6 +178,30 @@ chartWrapper.addEventListener('click', (e) => {
         chartInput.addEventListener('input', inputValueCheck);
         chartSendBtn.addEventListener('click', knowName);
       }, 2000);
+    }
+    if (step === '2') {
+      if (userInfo.tree === 'tree1') {
+        addNewQuestion(plan.final);
+        inputOpen();
+      }
+      else {
+        if (labelFor === plan.tree2.q3.radio1) {
+          addNewQuestion(plan.final);
+        }
+        else if (labelFor === plan.tree2.q3.radio2) {
+          setTimeout(() => {
+            addNewQuestion(plan[`${userInfo.tree}`].q4);
+            setTimeout(() => {
+              addNewRadioBtns(plan[`${userInfo.tree}`].q5, 3);
+
+            }, 2500);
+          }, 2000);
+
+        }
+      }
+    }
+    if (step === '3') {
+      addNewQuestion(plan.final);
     }
 
 
