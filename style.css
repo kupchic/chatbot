@@ -696,7 +696,7 @@
 .input-btn--send {
   display: none;
   pointer-events: none;
-  background-image: url("/img/send-icon.svg");
+  background-image: url("./img/send-icon.svg");
   -webkit-background-size: 24px 24px;
           background-size: 24px;
 }
@@ -736,7 +736,7 @@
   position: absolute;
   right: 84px;
   top: 4px;
-  background-image: url("/img/smiling-emoticon.svg");
+  background-image: url("./img/smiling-emoticon.svg");
 }
 
 .smiles-wrp,
@@ -818,5 +818,5 @@
   display: block;
   width: 30px;
   height: 30px;
-  background-image: url("/img/inclined-clip.svg");
+  background-image: url("./img/inclined-clip.svg");
 }

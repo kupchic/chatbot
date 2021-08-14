@@ -488,7 +488,7 @@ $btn-width: 30px;
   &--send {
     display: none;
     pointer-events: none;
-    background-image: url("/img/send-icon.svg");
+    background-image: url("./img/send-icon.svg");
     background-size: 24px;
     &.active {
       pointer-events: inherit;
@@ -519,7 +519,7 @@ $btn-width: 30px;
   position: absolute;
   right: $btn-width * 2.8;
   top: $input-top-pad/2;
-  background-image: url("/img/smiling-emoticon.svg");
+  background-image: url("./img/smiling-emoticon.svg");
 }
 .smiles-wrp,
 #open-smile-btn {
@@ -567,5 +567,5 @@ $smile-size: 36px;
   display: block;
   width: 30px;
   height: 30px;
-  background-image: url("/img/inclined-clip.svg");
+  background-image: url("./img/inclined-clip.svg");
 }
