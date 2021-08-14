@@ -8,6 +8,9 @@ const chartInput = chartWrapper.querySelector('.chat-input');
 const chartSendBtn = chartWrapper.querySelector('.input-btn--send');
 const allSmilesWrp = chartWrapper.querySelector('.smiles-grid--all');
 const memberName = document.querySelector('.avatar-name.hero-avatar').textContent;
+const openCheckbox = document.querySelector('.open-checkbox__label');
+
+
 
 let userInfo = {
   tree: '',
@@ -135,6 +138,11 @@ function knowName() {
 
   }
 }
+function removeMsgFromCheckbox() {
+  openCheckbox.classList.remove('msg');
+  openCheckbox.removeEventListener('click', removeMsgFromCheckbox);
+}
+openCheckbox.addEventListener('click', removeMsgFromCheckbox);
 
 
 

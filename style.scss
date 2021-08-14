@@ -80,7 +80,6 @@ $form-pad: 16px;
 .open-checkbox__label {
   position: relative;
   display: flex;
-  overflow: hidden;
   width: $form-header-input-label-height;
   height: $form-header-input-label-height;
   justify-content: center;
@@ -95,6 +94,7 @@ $form-pad: 16px;
   background-position: center;
   z-index: 3;
   &:after {
+    border-radius: 6px;
     position: absolute;
     content: "";
     width: 100%;
@@ -104,6 +104,21 @@ $form-pad: 16px;
     background-color: rgb(0, 0, 0);
     transition: opacity 0.4s ease;
     opacity: 0;
+  }
+  &.msg::before {
+    position: absolute;
+    content: "1";
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background-color: #d0241b;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
   }
   &:hover::after {
     opacity: 0.28;
