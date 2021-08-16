@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <p class="avatar-name hero-avatar">sasha &#129303; &#x1f60a;</p>
+      <div class="chat-form-core">
+        <template id="messeges-tmpl">
+          <div class="message-box message-box__question">
+            <div class="message-loader">
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+            </div>
+            <div class="message-label">Fairway</div>
+            <div class="chat-message-logo"><div class="chat-logo__image"></div></div>
+            <div class="message-wrp">
+              <div class="message-text message-text__question"></div>
+              <div class="message-time"></div>
+            </div>
+          </div>
+          <div class="message-box message-box__answer">
+            <div class="message-wrp message-wrp__answer">
+              <div class="message-time"></div>
+              <div class="message-text message-text__answer"></div>
+            </div>
+          </div>
+          <div class="radio-btns-wrapper">
+            <label class="radio-btn-wrp">
+              <input type="radio" name="step-1" value="yes" />
+              <span for="yes" step="1" class="radio-label w-form-label">Yessss! I want to schedule a mortgage consultation 😀</span>
+            </label>
+          </div>
+        </template>
+        <input id="open-checkbox" type="checkbox" />
+        <label class="open-checkbox__label msg" for="open-checkbox"> </label>
+        <form class="chat-form-wrapper chat-form-wrapper--green" id="chatbot-form" action="#">
+          <!-- header -->
+          <legend class="chat-header">
+            <div class="chat-logo">
+              <div class="chat-logo__image"></div>
+              <div class="online-mark"></div>
+            </div>
+            <div class="chat-header__text">Fairway</div>
+            <label for="open-checkbox" class="close-chat-mob" class="close-chat-mob" />
+          </legend>
+          <!-- chat -->
+          <div class="bot-chat">
+            <div class="message-box message-box__question show">
+              <div class="message-loader">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+              </div>
+              <div class="message-label">Fairway</div>
+              <div class="chat-message-logo"><div class="chat-logo__image"></div></div>
+              <div class="message-wrp">
+                <div class="message-text message-text__question">Are you ready to start your homeownership journey? 🏠</div>
+                <div class="message-time message-time--first"></div>
+              </div>
+            </div>
+            <div class="radio-btns-wrapper">
+              <label class="radio-btn-wrp w-radio">
+                <input type="radio" name="step-1" value="yes" />
+                <span for="yes" step="1" class="radio-label w-form-label">Yessss! I want to schedule a mortgage consultation 😀</span>
+              </label>
+              <label class="radio-btn-wrp w-radio">
+                <input type="radio" name="step-1" value="eh" />
+                <span for="eh" step="1" class="radio-label w-form-label">Eh. I'm thinking about getting a mortgage 💵</span>
+              </label>
+              <label class="radio-btn-wrp w-radio">
+                <input type="radio" name="step-1" value="yep" />
+                <span for="yep" step="1" class="radio-label w-form-label">Yep! I'm thinking about refinancing 💵</span>
+              </label>
+            </div>
+          </div>
+          <!-- input -->
+          <div class="chat-input-wrapper">
+            <div class="input-wrp-for-smiles">
+              <input type="text" class="chat-input disabled" maxlength="256" name="Reply" placeholder="Reply to Fairway" id="reply-input" />
+              <label for="open-smile-btn" class="input-btn smiles--btn-wrp"></label>
+              <input id="open-smile-btn" type="checkbox" />
+              <div class="smiles-wrp">
+                <span class="smiles-wrp_type">Recently Used</span>
+                <ul class="smiles-grid smiles-grid--recently">
+                  <li><label for="open-smile-btn" class="smile">&#128512;</label></li>
+                </ul>
+                <span class="smiles-wrp_type">Smileys & People</span>
+                <ul class="smiles-grid smiles-grid--all">
+                  <li><label for="open-smile-btn" class="smile">&#128516;</label></li>
+                </ul>
+              </div>
+            </div>
+
+            <label class="input-btn add-file-btn-label">
+              <input class="input-btn" type="file" id="add-file-btn" name="filename" />
+            </label>
+
+            <button type="button" class="input-btn input-btn--send"></button>
+            <button type="button" class="input-btn input-btn--gif">GIF</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -116,11 +116,13 @@ function inputValueCheck(e) {
     chartSendBtn.classList.add('active');
     chartSendBtn.removeEventListener('click', prevent);
     chartSendBtn.addEventListener('click', addNewAnswer);
+    document.addEventListener('keyup', sendByEnter);
   }
   else {
     chartSendBtn.classList.remove('active');
     chartSendBtn.addEventListener('click', prevent);
     chartSendBtn.removeEventListener('click', addNewAnswer);
+    document.removeEventListener('keyup', sendByEnter);
   }
 }
 function knowName() {
@@ -138,6 +140,17 @@ function knowName() {
 
   }
 }
+
+function sendByEnter(e) {
+
+  if (e.code === 'Enter' && chartInput.value) {
+    chartSendBtn.removeEventListener('click', prevent);
+    addNewAnswer();
+    chartSendBtn.click();
+  }
+
+}
+
 function removeMsgFromCheckbox() {
   openCheckbox.classList.remove('msg');
   openCheckbox.removeEventListener('click', removeMsgFromCheckbox);

@@ -6,6 +6,11 @@
   scroll-behavior: smooth;
 }
 
+label,
+button {
+  cursor: pointer;
+}
+
 #open-checkbox {
   display: none;
 }
@@ -166,6 +171,139 @@
       grid-template-columns: 1fr;
   -ms-grid-rows: 55px 1fr 55px;
       grid-template-rows: 55px 1fr 55px;
+}
+
+.chat-form-wrapper--green {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: fixed;
+  background-color: #80c33f;
+  -webkit-border-radius: 6px;
+          border-radius: 6px;
+  z-index: 1000;
+  transform: translate(-50%, -50%) !important;
+  -ms-grid-rows: 120px 1fr 55px;
+      grid-template-rows: 120px 1fr 55px;
+}
+
+.chat-form-wrapper--green .chat-header {
+  background-color: transparent;
+  background-image: url("./img/FairwayPNGwhite.png");
+  -webkit-background-size: 200px auto;
+          background-size: 200px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-align-self: stretch;
+      -ms-flex-item-align: stretch;
+              -ms-grid-row-align: stretch;
+          align-self: stretch;
+  max-height: unset;
+  padding: 16px 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom: 1px solid #fff;
+}
+
+.chat-form-wrapper--green .chat-header .close-chat-mob {
+  display: block;
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+}
+
+.chat-form-wrapper--green .chat-header .chat-logo,
+.chat-form-wrapper--green .chat-header .chat-header__text {
+  display: none;
+}
+
+.chat-form-wrapper--green .radio-label {
+  background-color: white;
+}
+
+.chat-form-wrapper--green .radio-label.active,
+.chat-form-wrapper--green .message-text.message-text__answer {
+  background: rgba(255, 255, 255, 0.7);
+  color: #333333;
+  border: none;
+}
+
+.chat-form-wrapper--green .bot-chat::-webkit-resize {
+  width: 6px;
+  height: 6px;
+}
+
+.chat-form-wrapper--green .bot-chat::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-form-wrapper--green .bot-chat::-webkit-scrollbar-button {
+  width: 6px;
+  height: 0;
+}
+
+.chat-form-wrapper--green .bot-chat::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.chat-form-wrapper--green .bot-chat::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-form-wrapper--green .bot-chat {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  scrollbar-width: thin;
+}
+
+.chat-form-wrapper--green .chat-input {
+  background: rgba(255, 255, 255, 0.103);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.chat-form-wrapper--green .chat-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.chat-form-wrapper--green .chat-input::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.chat-form-wrapper--green .chat-input:-ms-input-placeholder {
+  color: #fff;
+}
+
+.chat-form-wrapper--green .chat-input::-ms-input-placeholder {
+  color: #fff;
+}
+
+.chat-form-wrapper--green .chat-input::placeholder {
+  color: #fff;
+}
+
+.chat-form-wrapper--green .message-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.chat-form-wrapper--green .input-btn--send,
+.chat-form-wrapper--green .input-btn--gif {
+  display: none;
+  pointer-events: none;
+}
+
+.chat-form-wrapper--green .input-wrp-for-smiles {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+}
+
+.chat-form-wrapper--green .input-wrp-for-smiles .smiles--btn-wrp {
+  right: 45px;
 }
 
 @media screen and (max-width: 479px) {
