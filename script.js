@@ -97,9 +97,8 @@ function chatBot(formSelector, checkboxSelector, plan) {
       addToChart(answerBoxTmpl.querySelector('.message-box__answer'));
       scrollTo();
       chartSendBtn.classList.remove('active');
-      chartInput.value = '';
       console.log(chartInput.value);
-
+      chartInput.value = '';
     }
     console.log('send');
   }
@@ -155,9 +154,10 @@ function chatBot(formSelector, checkboxSelector, plan) {
 
     if (e.code === 'Enter' && chartInput.value) {
       chartSendBtn.removeEventListener('click', prevent);
-      addNewAnswer();
+      // addNewAnswer();
       chartSendBtn.click();
     }
+    console.log(e.code);
 
   }
 
