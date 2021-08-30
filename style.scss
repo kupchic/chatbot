@@ -4,9 +4,13 @@
   padding: 0;
   scroll-behavior: smooth;
 }
+
 label,
 button {
   cursor: pointer;
+}
+body.no-scroll{
+  overflow: hidden;
 }
 
 @mixin scrollStyle($width, $thumb-color, $track-color) {
@@ -46,18 +50,21 @@ $form-height: 480px;
 $form-pad: 16px;
 $btn-width: 30px;
 
-#open-checkbox {
+#open-checkbox, #open-checkbox-green {
   display: none;
 }
-#open-checkbox:checked {
+
+#open-checkbox:checked, #open-checkbox-green:checked {
   & + .open-checkbox__label {
     background-color: $accent-green;
     background-image: url("./img/close.svg");
     background-size: 23px 23px;
+
     &::after {
       opacity: 0;
     }
   }
+
   & ~ .chat-form-wrapper {
     pointer-events: inherit;
     transform: translateY(0px);
@@ -72,16 +79,27 @@ $btn-width: 30px;
   right: $position;
   z-index: 1000;
   @media screen and (max-width: 479px) {
-    left: auto;
-    top: auto;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
-    border-radius: 0px;
+    position: static;
   }
 }
+
+.open-checkbox__label--green {
+  display: inline-block;
+  padding: 0 25px;
+  border-width: 0px;
+  border-color: #48a476;
+  border-radius: 0px;
+  background-color: #80c33f;
+  transition: background-color 300ms ease;
+  font-size: 12px;
+  line-height: 50px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: 0 16px 41px 0 rgba(60, 133, 92, 0.43);
+}
+
 .open-checkbox__label {
   position: relative;
   display: flex;
@@ -98,6 +116,7 @@ $btn-width: 30px;
   background-size: 40px;
   background-position: center;
   z-index: 3;
+
   &:after {
     border-radius: 6px;
     position: absolute;
@@ -110,6 +129,7 @@ $btn-width: 30px;
     transition: opacity 0.4s ease;
     opacity: 0;
   }
+
   &.msg::before {
     position: absolute;
     content: "1";
@@ -125,9 +145,11 @@ $btn-width: 30px;
     top: 0;
     transform: translate(50%, -50%);
   }
+
   &:hover::after {
     opacity: 0.28;
   }
+
   @media screen and (max-width: 479px) {
     position: absolute;
     right: $position/2;
@@ -168,8 +190,9 @@ $btn-width: 30px;
     background-color: #80c33f;
     border-radius: 6px;
     z-index: 1000;
-    transform: translate(-50%, -50%) !important ;
+    transform: translate(-50%, -50%) !important;
     grid-template-rows: 120px 1fr $form-header-input-label-height;
+
     .chat-header {
       background-color: transparent;
       background-image: url("./img/FairwayPNGwhite.png");
@@ -187,47 +210,48 @@ $btn-width: 30px;
         display: block;
         align-self: flex-start;
       }
+
       .chat-logo,
       .chat-header__text {
         display: none;
       }
     }
+
     .radio-label {
       background-color: rgb(255, 255, 255);
     }
+
     .radio-label.active,
     .message-text.message-text__answer {
       background: rgba(255, 255, 255, 0.7);
       color: rgb(51, 51, 51);
       border: none;
     }
+
     .bot-chat {
       @include scrollStyle(6px, rgba(0, 0, 0, 0.2), transparent);
     }
+
     .chat-input {
       background: rgba(255, 255, 255, 0.103);
       color: #fff;
       border-color: rgba(255, 255, 255, 0.5);
+
       &:focus {
         border-color: rgba(255, 255, 255, 0.5);
       }
+
       &::placeholder {
         color: #fff;
       }
     }
+
     .message-label {
       color: rgba(255, 255, 255, 0.7);
     }
-    .input-btn--send,
-    .input-btn--gif {
-      display: none;
-      pointer-events: none;
-    }
-    .input-wrp-for-smiles {
-      grid-column: 1/3;
-      .smiles--btn-wrp {
-        right: $btn-width * 1.5;
-      }
+
+    .input-btn--send {
+      background-image: url("./img/send-icon--green.svg");
     }
   }
 
@@ -240,6 +264,7 @@ $btn-width: 30px;
     height: 100vh;
     max-height: none;
     border-radius: 0px;
+    transform: translate(0% , 0%) !important;
   }
 }
 
@@ -263,6 +288,7 @@ $btn-width: 30px;
   align-items: center;
   border-radius: 20px;
   background-color: #fff;
+
   &__image {
     overflow: hidden;
     width: 27px;
@@ -274,6 +300,7 @@ $btn-width: 30px;
     background-repeat: no-repeat;
     object-fit: cover;
   }
+
   .online-mark {
     position: absolute;
     left: auto;
@@ -287,6 +314,7 @@ $btn-width: 30px;
     background-color: #2eec07;
   }
 }
+
 .close-chat-mob {
   display: none;
   width: 20px;
@@ -298,6 +326,7 @@ $btn-width: 30px;
     display: block;
   }
 }
+
 .bot-chat {
   overflow-x: hidden;
   overflow-y: auto;
@@ -306,11 +335,14 @@ $btn-width: 30px;
   //max-height: $form-height - 2 * $form-header-input-label-height;
   margin-right: -$form-pad + 4px;
   padding-right: $form-pad;
+
   input[type="radio"] {
     display: none;
   }
+
   @include scrollStyle(6px, rgba(0, 0, 0, 0.2), #fff);
 }
+
 .message-box {
   position: relative;
   width: 100%;
@@ -338,6 +370,7 @@ $btn-width: 30px;
   transform: scale(0.3);
   transition: opacity 200ms ease;
 }
+
 .circle {
   position: absolute;
   width: 20px;
@@ -345,6 +378,7 @@ $btn-width: 30px;
   border-radius: 50%;
   background-color: $accent-green;
 }
+
 .shadow {
   position: absolute;
   z-index: -1;
@@ -362,6 +396,7 @@ $btn-width: 30px;
   pointer-events: none;
   opacity: 0.5;
 }
+
 .chat-input.disabled ~ * {
   pointer-events: none;
   opacity: 0.2;
@@ -370,10 +405,12 @@ $btn-width: 30px;
 .message-box__question > *:not(.message-loader) {
   opacity: 0;
 }
+
 .message-box__question.show > *:not(.message-loader) {
   transition-delay: 0.4s;
   opacity: 1;
 }
+
 .message-box__question.show > .message-loader {
   opacity: 0;
 }
@@ -401,15 +438,18 @@ $btn-width: 30px;
     top: 0%;
   }
 }
+
 .circle:nth-child(2) {
   left: 45%;
   animation-delay: 0.2s;
 }
+
 .circle:nth-child(3) {
   left: auto;
   right: 15%;
   animation-delay: 0.3s;
 }
+
 .shadow {
   top: 62px;
   transform-origin: 50%;
@@ -431,15 +471,18 @@ $btn-width: 30px;
     opacity: 0.4;
   }
 }
+
 .shadow:nth-child(4) {
   left: 45%;
   animation-delay: 0.2s;
 }
+
 .shadow:nth-child(5) {
   left: auto;
   right: 15%;
   animation-delay: 0.3s;
 }
+
 .send-btn.active {
   opacity: 1 !important;
   z-index: 3 !important;
@@ -476,6 +519,7 @@ $btn-width: 30px;
   align-items: center;
   transition: opacity 200ms ease;
 }
+
 .message-text {
   margin-right: 15px;
   padding: 10px 15px;
@@ -484,6 +528,7 @@ $btn-width: 30px;
   font-size: 13px;
   line-height: 1.4em;
 }
+
 .message-time {
   opacity: 0;
   color: rgba(51, 51, 51, 0.7);
@@ -491,9 +536,11 @@ $btn-width: 30px;
   white-space: nowrap;
   transition: opacity 200ms ease;
 }
+
 .message-wrp.message-wrp__answer {
   justify-content: flex-end;
 }
+
 .message-text.message-text__answer {
   margin-right: 0px;
   margin-left: $form-pad;
@@ -508,10 +555,12 @@ $btn-width: 30px;
   gap: 10px;
   margin-bottom: 25px;
 }
+
 .radio-btn-wrp {
   display: flex;
   justify-content: flex-end;
 }
+
 .radio-label {
   position: relative;
   max-width: 220px;
@@ -523,6 +572,7 @@ $btn-width: 30px;
   transition: all 300ms ease;
   font-size: 13px;
   line-height: 1.4em;
+
   &.active {
     background-color: $accent-green;
     color: #fff;
@@ -534,7 +584,6 @@ $icon-color: #687882;
 .chat-input {
   position: relative;
   margin-bottom: 0px;
-  padding-right: 40px;
   border-radius: 6px;
   font-size: 13px;
   line-height: 1.4em;
@@ -545,14 +594,16 @@ $icon-color: #687882;
   width: 100%;
   height: 39px;
   padding: $input-top-pad 12px;
+
   &:focus {
     border-color: #3898ec;
     outline: 0;
   }
 }
+
 .chat-input-wrapper {
   display: grid;
-  grid-template-columns: 1fr 30px 30px;
+  grid-template-columns: 1fr $btn-width;
   gap: 10px;
   grid-template-rows: $form-header-input-label-height - $form-pad;
   max-height: $form-header-input-label-height - $form-pad;
@@ -576,20 +627,25 @@ $icon-color: #687882;
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
+  transition-duration: 0.4s;
+
   &--send {
-    display: none;
+    opacity: 0.3;
     pointer-events: none;
     background-image: url("./img/send-icon.svg");
     background-size: 24px;
+
     &.active {
       pointer-events: inherit;
-      display: block;
+      opacity: 1;
+
       & + .input-btn--gif {
         pointer-events: none;
         display: none;
       }
     }
   }
+
   &--gif {
     text-align: center;
     color: $icon-color;
@@ -608,21 +664,23 @@ $icon-color: #687882;
 
 .smiles--btn-wrp {
   position: absolute;
-  right: $btn-width * 2.8;
+  right: $btn-width + 16px;
   top: $input-top-pad/2;
   background-image: url("./img/smiling-emoticon.svg");
 }
+
 .smiles-wrp,
-#open-smile-btn {
+#open-smile-btn, #open-smile-btn-green {
   display: none;
 }
 
-#open-smile-btn:checked + .smiles-wrp {
+#open-smile-btn-green:checked + .smiles-wrp, #open-smile-btn:checked + .smiles-wrp {
   display: block;
 }
+
 .smiles-wrp {
   position: absolute;
-  width: calc(100% + #{$form-pad}* 2);
+  width: calc(100% + #{$form-pad} * 2);
   margin-right: 4px;
   margin-left: -$form-pad;
   bottom: $form-header-input-label-height;
@@ -648,12 +706,14 @@ $smile-size: 36px;
   grid-template-columns: repeat(auto-fill, $smile-size/1.5);
   grid-auto-rows: $smile-size;
   gap: 6px;
+
   li {
     text-align: center;
     line-height: $smile-size;
     list-style: none;
   }
 }
+
 .add-file-btn-label {
   display: block;
   width: 30px;
