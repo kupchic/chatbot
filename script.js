@@ -97,10 +97,8 @@ function chatBot(formSelector, checkboxSelector, plan) {
       addToChart(answerBoxTmpl.querySelector('.message-box__answer'));
       scrollTo();
       chartSendBtn.classList.remove('active');
-      console.log(chartInput.value);
       chartInput.value = '';
     }
-    console.log('send');
   }
 
   function addNewRadioBtns(obj, step) {
@@ -154,11 +152,8 @@ function chatBot(formSelector, checkboxSelector, plan) {
 
     if (e.code === 'Enter' && chartInput.value) {
       chartSendBtn.removeEventListener('click', prevent);
-      // addNewAnswer();
       chartSendBtn.click();
     }
-    console.log(e.code);
-
   }
 
   emojis.forEach(el => {
@@ -227,7 +222,7 @@ function chatBot(formSelector, checkboxSelector, plan) {
     }
   });
   if (document.body.clientWidth < 480) {
-    chartWrapper.querySelector('input[type="checkbox"]').addEventListener('click', ()=>{
+    chartWrapper.querySelector('input[type="checkbox"]').addEventListener('click', () => {
       document.querySelector('body').classList.toggle('no-scroll');
     });
   }
