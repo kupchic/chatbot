@@ -98,7 +98,10 @@ function chatBot(formSelector, checkboxSelector, plan) {
       scrollTo();
       chartSendBtn.classList.remove('active');
       chartInput.value = '';
+      console.log(chartInput.value);
+
     }
+    console.log('send');
   }
 
   function addNewRadioBtns(obj, step) {
