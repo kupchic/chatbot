@@ -229,7 +229,7 @@ body.no-scroll {
     right: 0;
     bottom: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     max-height: none;
     border-radius: 0px;
     transform: translate(0%, 0%) !important;
